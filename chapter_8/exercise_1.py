@@ -1,4 +1,7 @@
-if __name__ == "__main__":
+import sys
+
+if __name__ == "__main__":  
+    
     f1 = open('data.txt',"r")
     lines = f1.readlines()
     f1.close()
