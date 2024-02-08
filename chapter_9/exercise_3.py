@@ -32,12 +32,32 @@ class Family(Person):
                 raise FamilyError()
             else:
                 self.myfamily.append(arg)
+        self.kids = len(self.myfamily)-2
 
     def add(self,kid):
         if not isinstance(kid,Person):
             raise FamilyError
         else:
             self.myfamily.append(kid)
+            self.kids+=1
+
+    def __eq__(self,other):
+        if isinstance(other,Person):
+            return self.kids == other.kids
+        else:
+            raise FamilyError()
+
+    def __lt__(self,other):
+        if isinstance(other,Person):
+            return self.kids < other.kids
+        else:
+            raise FamilyError()
+
+    def __gt__(self,other):
+        if isinstance(other,Person):
+            return self.kids > other.kids
+        else:
+            raise FamilyError()
 
     def __str__(self):
         return str(self.myfamily)
@@ -53,8 +73,13 @@ if __name__ == "__main__":
 
     myfam = Family(mom,dad,me,bro)
 
+    othfam = Family(mom,dad,bro)
+
     print(me)
     print(myfam)
-    myfam.add(bob)
+    print(myfam>othfam)
+    print(myfam<othfam)
+    othfam.add(sis)
+    print(myfam==othfam)
     print(myfam)
  
